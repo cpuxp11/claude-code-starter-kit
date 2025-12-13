@@ -2,6 +2,14 @@
 
 > Claude Code를 처음 사용하는 분들을 위한 스타터 키트
 
+## Quick Start (처음이라면 이것만!)
+
+1. 터미널에서 `claude` 실행
+2. `/onboarding` 입력
+3. 질문에 답하면 **나에게 맞는 폴더 구조** 자동 생성!
+
+---
+
 ## Claude Code란?
 
 **Claude Code**는 터미널에서 실행되는 AI 코딩 어시스턴트입니다. 대화를 통해 코드 작성, 파일 관리, 작업 자동화를 수행할 수 있습니다.
@@ -80,6 +88,7 @@ claude-code-starter-kit/
 
 | 명령어 | 설명 |
 |--------|------|
+| `/onboarding` | 맞춤형 워크스페이스 설계 (처음 시작 시 추천!) |
 | `/daily-note` | 오늘의 Daily Note 생성 |
 | `/idea` | 아이디어 저장 |
 | `/todo` | 할 일 추가 |
