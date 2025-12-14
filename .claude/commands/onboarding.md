@@ -1,39 +1,134 @@
 ---
-description: 온보딩 질문으로 맞춤형 워크스페이스 설계
+description: 워크스페이스 초기 설정 (폴더 생성 + 템플릿)
+allowed-tools: Write, Read, Bash, Edit
 ---
 
-안녕하세요! 옵시디언 + 클로드코드 온보딩을 시작합니다.
+# 워크스페이스 온보딩
 
-아래 질문에 답변해주시면, 당신의 업무에 맞는 맞춤형 폴더 구조와 워크플로우를 제안해드리겠습니다.
+처음 시작하는 분을 위해 폴더 구조와 템플릿을 자동 생성합니다.
 
-## 1. 현재 업무 파악
+## Step 1: 질문 2개
 
-**Q1:** 지금 어떤 업무나 프로젝트를 진행 중인가요? 간단히 목록을 알려주세요.
+**Q1:** 워크스페이스 이름을 정해주세요 (예: my-notes, work-docs, pkm)
 
-**Q2:** 매일 반복하는 루틴이나 꼭 기록해야 하는 활동이 있나요?
-
-## 2. 정리/자동화 니즈
-
-**Q3:** 기록이나 정리 과정에서 가장 답답했던 점은 무엇인가요?
-
-**Q4:** 자동화로 해결하고 싶은 작업(예: 일정 정리, 문서 생성)이 있다면 적어주세요.
-
-## 3. 산출물 형태
-
-**Q5:** 자주 작성하는 문서 종류는 무엇인가요? (회의록, 리포트, 학습 기록 등)
-
-**Q6:** 공유 대상(동료, 고객 등)이 있나요? 있다면 어떤 포맷이 필요할까요?
-
-## 4. 우선 실행 순서
-
-**Q7:** 먼저 자동화하고 싶은 프로세스를 한 가지 고른다면?
-
-**Q8:** Daily Note부터 시작해도 괜찮나요, 아니면 특정 프로젝트 문서를 먼저 만들까요?
+**Q2:** 어떤 용도인가요?
+- A) 개인 지식관리
+- B) 업무/프로젝트
+- C) 둘 다
 
 ---
 
-**수행할 작업:**
-1. 위 질문들을 사용자에게 하나씩 물어보세요
-2. 답변을 바탕으로 Johnny Decimal 시스템 기반 맞춤형 폴더 구조 제안
-3. 우선순위에 맞는 자동화 워크플로우 설계
-4. 필요한 템플릿과 커맨드 추천
+## Step 2: 폴더 구조 생성
+
+답변을 받으면 **현재 작업 디렉토리**에 다음 구조를 생성하세요:
+
+```
+{워크스페이스명}/
+├── 00-inbox/           # 임시 저장소
+├── 00-system/
+│   └── 01-templates/   # 템플릿
+├── 10-projects/        # 프로젝트
+├── 20-areas/           # 지속 관리 영역
+├── 30-knowledge/
+│   └── 33-insights/    # 인사이트
+├── 40-personal/
+│   ├── 41-daily/       # Daily Notes
+│   └── 46-todos/       # 할 일
+└── 50-archive/         # 보관함
+```
+
+Bash로 폴더 생성:
+```bash
+WORKSPACE="{사용자 입력}"
+mkdir -p "$WORKSPACE/00-inbox"
+mkdir -p "$WORKSPACE/00-system/01-templates"
+mkdir -p "$WORKSPACE/10-projects"
+mkdir -p "$WORKSPACE/20-areas"
+mkdir -p "$WORKSPACE/30-knowledge/33-insights"
+mkdir -p "$WORKSPACE/40-personal/41-daily"
+mkdir -p "$WORKSPACE/40-personal/46-todos"
+mkdir -p "$WORKSPACE/50-archive"
+```
+
+---
+
+## Step 3: 기본 파일 생성
+
+Write 도구로 다음 파일들을 생성하세요:
+
+### 3-1. `{workspace}/00-inbox/README.md`
+```markdown
+# Inbox
+
+새 메모, 아이디어, 크롤링 결과가 여기 저장됩니다.
+
+## 명령어
+- `/idea` - 아이디어 저장
+- `/crawl <URL>` - 웹페이지 크롤링
+
+## 규칙
+- 일주일에 한 번 정리
+- 오래된 항목은 적절한 폴더로 이동
+```
+
+### 3-2. `{workspace}/00-system/01-templates/daily-note-template.md`
+```markdown
+# {{date}} Daily Note
+
+## 오늘의 일정
+
+## 오늘의 목표
+- [ ]
+
+## 메모
+
+
+## 배운 것
+
+
+## 관련 노트
+
+```
+
+### 3-3. `{workspace}/40-personal/46-todos/active-todos.md`
+```markdown
+# Active Todos
+
+## 긴급
+- [ ]
+
+## 이번 주
+- [ ]
+
+## 나중에
+- [ ]
+```
+
+---
+
+## Step 4: 완료 안내
+
+```
+워크스페이스 설정 완료!
+
+생성된 폴더:
+- 00-inbox/     : 임시 메모
+- 10-projects/  : 프로젝트
+- 40-personal/  : Daily Note, 할 일
+
+명령어:
+- /daily-note  : 오늘 노트 생성
+- /idea        : 아이디어 저장
+- /crawl <URL> : 웹 크롤링
+
+시작: "/daily-note" 입력해보세요!
+```
+
+---
+
+## 실행 순서
+
+1. Q1, Q2 질문
+2. 답변 받으면 mkdir로 폴더 생성
+3. Write로 README, 템플릿 생성
+4. 완료 메시지 출력
